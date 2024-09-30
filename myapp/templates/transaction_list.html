@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{%block main_block%}
+<div class="container">
+
+    
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table table-dark border border-dark rounded border-2 p-4 shadow mt-5">
+                <tr>
+                    <th>Transaction Title</th>
+                    <th>Amount</th>
+                    <th>Category option</th>
+                    <th>Payment method</th>
+                    <th>Created date</th>
+                    <th>Owner</th>
+                    <th>Action</th>
+                </tr>
+                {% for e in transactions %}
+                <tr>
+                    <td>{{e.title}}</td>
+                    <td>{{e.amount}}</td>
+                    <td>{{e.category_option}}</td>
+                    <td>{{e.payment_method}}</td>
+                    <td>{{e.created_date}}</td>
+                    <td>{{e.owner}}</td>
+                    <td>
+                        <a href="{%url 'tran-edit' e.id%}" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{%url 'tran-delete' e.id%}" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                    
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}

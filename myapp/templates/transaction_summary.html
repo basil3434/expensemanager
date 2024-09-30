@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%block main_block%}
+<div class="container">
+    
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form action="">
+                <div class="row my-3">
+                    <div class="col-5">
+                        <label for=""><h6>StartDate</h6></label>
+                        {{form.start_date}}
+                    </div>
+                    <div class="col-5">
+                        <label for=""><h6>EndDate</h6></label>
+                        {{form.end_date}}
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="mt-4 p-2 border border-2 rounded text-center shadow btn btn-outline-info"><h6>Filter</h6></button>
+                    </div>
+                </div>
+              
+              
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-4"></div>
+        <div class="col-4 border border-2 rounded p-3 text-center shadow">
+            <h3>TotalExpense:{{total_expense}}</h3>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table border border border-2 p-4 shadow mt-3">
+                <tr>
+                    <th>Transaction Title</th>
+                    <th>Amount</th>
+                    <th>Category option</th>
+                    <th>Payment method</th>
+                    <th>Created date</th>
+                    <th>Owner</th>
+                    <th>Action</th>
+                </tr>
+                {% for e in transactions %}
+                <tr>
+                    <td>{{e.title}}</td>
+                    <td>{{e.amount}}</td>
+                    <td>{{e.category_option}}</td>
+                    <td>{{e.payment_method}}</td>
+                    <td>{{e.created_date}}</td>
+                    <td>{{e.owner}}</td>
+                    <td>
+                        <a href="{%url 'tran-edit' e.id%}" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{%url 'tran-delete' e.id%}" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                    
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}
